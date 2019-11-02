@@ -1,3 +1,6 @@
 package com.seven.setest
 
-data class Dianpu(override val name:String, override val imageUrl:String):Good
+data class Dianpu(override val name:String, override val imageUrl:String):Good {
+    val xiaofei:String = ""
+
+}

@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".FindActivity"></activity>
+        <activity android:name=".HomeActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,7 +30,7 @@
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="a86e7d5bd0cbb6f57ff672fb6df64f21"></meta-data>
+            android:value="a86e7d5bd0cbb6f57ff672fb6df64f21" />
     </application>
 
 </manifest>
