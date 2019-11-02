@@ -1,85 +1,38 @@
 package com.seven.setest
 
-import android.os.Bundle
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_main.*
-import com.amap.api.maps.model.MyLocationStyle
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.drawerlayout.widget.DrawerLayout
-import com.amap.api.maps.CameraUpdateFactory
-
 
 class MainActivity : AppCompatActivity() {
+
+    val imgUrl = "https://img.meituan.net/msmerchant/28304fa9884ba4baa5058b0502673a56115678.jpg"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        map_view.onCreate(savedInstanceState)
-        showMyLocation()
         setSupportActionBar(toolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        toolbar.title = "福州市"
+        val adapter = GoodsAdapter(applicationContext, GoodListener{
+            startActivity(Intent(this,DetailActivity::class.java))
+        })
+        rv_fushi.adapter = adapter
+        rv_shangquan.adapter = adapter
+        adapter.submitList(getGoods())
 
-        ActionBarDrawerToggle(
-            this, drawer_layout, toolbar,
-            0,0
-        ).run {
-            drawer_layout.addDrawerListener(this)
-            syncState()
+        Glide.with(this).load(imgUrl).into(meishi_1)
+        Glide.with(this).load(imgUrl).into(meishi_2)
+        Glide.with(this).load(imgUrl).into(meishi_3)
+
+    }
+
+    fun getGoods():List<Good> {
+        val list = mutableListOf<Good>()
+        for(i in 1..10) {
+            list.add(Shangquan("商圈名",imgUrl))
         }
-
-        navigation_view.setNavigationItemSelectedListener {
-            when(it.itemId) {
-
-            }
-        }
-
-    }
-
-    fun showMyLocation() {
-        val aMap = map_view.map
-        aMap.apply {
-            myLocationStyle = MyLocationStyle().apply {
-                myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE)
-                interval(5000L)
-            }
-            setOnMyLocationChangeListener {
-                if (myLocationStyle.myLocationType == MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE) {
-                    myLocationStyle = MyLocationStyle().apply {
-                        myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE_NO_CENTER)
-                        interval(5000L)
-                    }
-                    moveCamera(CameraUpdateFactory.zoomTo(17f))
-                }
-            }
-            uiSettings?.apply {
-                isMyLocationButtonEnabled = true
-                isZoomControlsEnabled = true
-                isRotateGesturesEnabled = true
-            }
-            isMyLocationEnabled = true
-        }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        map_view.onDestroy()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        map_view.onResume()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        map_view.onPause()
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        map_view.onSaveInstanceState(outState)
+        return list
     }
 }
