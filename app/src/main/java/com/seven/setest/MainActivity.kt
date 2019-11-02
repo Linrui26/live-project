@@ -26,6 +26,21 @@ class MainActivity : AppCompatActivity() {
         Glide.with(this).load(imgUrl).into(meishi_2)
         Glide.with(this).load(imgUrl).into(meishi_3)
 
+        more_shangquan.setOnClickListener {
+            startActivity(Intent(this,RankActivity::class.java))
+
+        }
+
+        more_meishi.setOnClickListener {
+
+        }
+
+        more_fushi.setOnClickListener {
+
+        }
+
+
+
     }
 
     fun getGoods():List<Good> {

@@ -17,6 +17,10 @@ class DetailActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+
+
+
+
         tv_name.text = "某店名"
 
         tv_detail.text = "4641条评论 人均:108元"
@@ -75,4 +79,6 @@ class DetailActivity : AppCompatActivity() {
         super.onSaveInstanceState(outState)
         map_view.onSaveInstanceState(outState)
     }
+
+
 }

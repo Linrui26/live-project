@@ -23,6 +23,9 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
+        android:fillViewport="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -43,6 +46,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:layout_marginStart="10dp"
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -51,7 +55,8 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:layout_marginEnd="10dp"
+                    android:id="@+id/more_shangquan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="查看更多"
@@ -59,6 +64,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="10dp"
                     android:id="@+id/rv_shangquan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -76,9 +82,10 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="10dp">
 
                 <TextView
+                    android:layout_marginStart="10dp"
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -87,7 +94,9 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:id="@+id/more_meishi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="查看更多"
@@ -98,6 +107,8 @@
                     android:id="@+id/meishi_1"
                     android:layout_width="200dp"
                     android:layout_height="200dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="10dp"
                     android:scaleType="centerCrop"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView4"
@@ -105,19 +116,25 @@
 
                 <ImageView
                     android:id="@+id/meishi_2"
-
-                    android:layout_width="200dp"
+                    android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/meishi_1"
                     app:layout_constraintTop_toTopOf="@+id/meishi_1"
                     tools:src="@drawable/spaceholder_item" />
 
                 <ImageView
                     android:id="@+id/meishi_3"
+                    android:layout_width="0dp"
 
-                    android:layout_width="200dp"
-                    android:layout_height="100dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="16dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/meishi_2"
                     app:layout_constraintStart_toStartOf="@+id/meishi_2"
                     app:layout_constraintTop_toBottomOf="@+id/meishi_2"
                     tools:src="@drawable/spaceholder_item" />
@@ -131,6 +148,7 @@
                 android:layout_marginTop="20dp">
 
                 <TextView
+                    android:layout_marginStart="10dp"
                     android:id="@+id/textView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -139,7 +157,8 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:layout_marginEnd="10dp"
+                    android:id="@+id/more_fushi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="查看更多"
@@ -150,11 +169,13 @@
                     android:id="@+id/rv_fushi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5"
+                    app:layout_constraintTop_toBottomOf="@+id/more_fushi"
                     tools:itemCount="30"
                     tools:listitem="@layout/item_good" />
             </androidx.constraintlayout.widget.ConstraintLayout>
