@@ -1,11 +1,14 @@
 package com.seven.setest
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -37,8 +40,17 @@ class DianpuAdapter(private val context: Context, private val listener: GoodList
                 listener.onClick(good)
             }
             if(good is Dianpu) {
-                holder.price.text = good.prize.toString()
-                holder.location.text = good.location
+                holder.price.text = "评分:"+good.rating
+                holder.location.text = good.address
+                holder.itemView.setOnClickListener {
+                    (context as Activity).startActivity(Intent(context,DetailActivity::class.java).apply {
+                        putExtra("index",position)
+                    })
+                }
+            }
+            if(good is Shangquan) {
+                holder.location.text = good.detail
+                holder.price.text = "平均评分${good.rating}"
             }
         }
     }

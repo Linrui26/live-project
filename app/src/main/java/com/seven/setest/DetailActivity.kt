@@ -3,33 +3,33 @@ package com.seven.setest
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.amap.api.maps.CameraUpdateFactory
+import com.amap.api.maps.model.LatLng
+import com.amap.api.maps.model.MarkerOptions
 import com.amap.api.maps.model.MyLocationStyle
 import kotlinx.android.synthetic.main.activity_detail.*
 
 
 class DetailActivity : AppCompatActivity() {
 
+    private var index:Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
         map_view.onCreate(savedInstanceState)
+        index = intent.getIntExtra("index",0)
         fab_back.setOnClickListener {
             onBackPressed()
         }
 
+        tv_name.text = Data.dianpus[index].name
 
+        tv_detail.text = "人均消费：90元"
 
+        ratingBar2.rating = Data.dianpus[1].rating.toFloat()
 
+        tv_location.text = "地址:" + Data.dianpus[index].address
 
-        tv_name.text = "某店名"
-
-        tv_detail.text = "4641条评论 人均:108元"
-
-        ratingBar2.rating = 4f
-
-        tv_location.text = "福建省福州市福州大学学生公寓"
-
-        tv_contact.text = "130000000"
+        tv_contact.text = "联系电话:" + Data.dianpus[index].tel.split(';')[0]
 
         showMyLocation()
 
@@ -57,6 +57,8 @@ class DetailActivity : AppCompatActivity() {
                 isRotateGesturesEnabled = true
             }
             isMyLocationEnabled = true
+            addMarker(MarkerOptions().position(LatLng(Data.dianpus[index].lng,Data.dianpus[index].lat)))
+            moveCamera(CameraUpdateFactory.changeLatLng(LatLng(Data.dianpus[index].lng,Data.dianpus[index].lat)))
         }
     }
 

@@ -1,5 +1,6 @@
 package com.seven.setest
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -15,13 +16,20 @@ class RankActivity : AppCompatActivity() {
 
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-        val adapter = DianpuAdapter(applicationContext, GoodListener {
 
-        })
-        rv_rank.adapter = adapter
-        adapter.submitList(getGoods())
+        if(intent.getStringExtra("type")=="shangquan") {
+            val adapter = DianpuAdapter(this, GoodListener {
 
+            })
+            adapter.submitList(Data.shangquans as List<Good>)
+            rv_rank.adapter = adapter
+        } else if(intent.getStringExtra("type")=="meishi") {
+            val adapter = DianpuAdapter(this, GoodListener {
 
+            })
+            adapter.submitList(Data.dianpus as List<Good>)
+            rv_rank.adapter = adapter
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -31,15 +39,4 @@ class RankActivity : AppCompatActivity() {
         return true
     }
 
-    fun getGoods():List<Good> {
-        val imgUrl = "https://img.meituan.net/msmerchant/28304fa9884ba4baa5058b0502673a56115678.jpg"
-        val list = mutableListOf<Good>()
-        for(i in 1..10) {
-            list.add(Dianpu("商圈名",imgUrl).apply {
-                location = "五一广场|八一中七路55号"
-                prize = 108
-            })
-        }
-        return list
-    }
 }
